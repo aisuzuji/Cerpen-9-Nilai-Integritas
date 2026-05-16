@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satu Desa, Sembilan Ujian — Cerpen 9 Nilai Integritas</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #faf9f6;
+  --surface: #ffffff;
+  --text: #1c1c1c;
+  --muted: #6b6b6b;
+  --border: #e8e6e0;
+  --accent: #1c1c1c;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.85;
+  padding: 0;
+}
+
+/* TOP BAR */
+.topbar {
+  background: var(--accent);
+  color: #fff;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.topbar-label { font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #aaa; }
+.topbar-title { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: #fff; }
+.progress-wrap { width: 60px; height: 3px; background: #444; border-radius: 2px; overflow: hidden; }
+.progress-bar { height: 100%; background: #fff; border-radius: 2px; width: 0%; transition: width .3s; }
+
+/* HERO */
+.hero {
+  background: var(--accent);
+  color: #fff;
+  padding: 48px 24px 40px;
+  text-align: center;
+}
+.hero-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 14px;
+}
+.hero-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(24px, 6vw, 36px);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+.hero-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #aaa;
+  line-height: 1.7;
+  max-width: 400px;
+  margin: 0 auto 24px;
+}
+.nilai-bubbles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+.bubble {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid #444;
+  color: #ccc;
+}
+
+/* READING NOTE */
+.reading-note {
+  background: #f0f0eb;
+  border-left: 3px solid #ccc;
+  padding: 14px 20px;
+  margin: 0 20px 24px;
+  border-radius: 0 8px 8px 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.65;
+}
+
+/* MAIN CONTENT */
+.content-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+/* NILAI CALLOUT */
+.nilai-callout {
+  margin: 28px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.callout-header {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.callout-num-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .7;
+}
+.callout-nama-big {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+.callout-body {
+  padding: 12px 16px;
+  background: var(--surface);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #444;
+  border-top: 1px solid rgba(0,0,0,.06);
+}
+
+.n1 .callout-header { background: #fff1f1; color: #991b1b; }
+.n2 .callout-header { background: #fffbeb; color: #92400e; }
+.n3 .callout-header { background: #f0fdf4; color: #166534; }
+.n4 .callout-header { background: #eff6ff; color: #1e40af; }
+.n5 .callout-header { background: #f5f3ff; color: #5b21b6; }
+.n6 .callout-header { background: #fdf4ff; color: #6b21a8; }
+.n7 .callout-header { background: #ecfdf5; color: #064e3b; }
+.n8 .callout-header { background: #fff7ed; color: #9a3412; }
+.n9 .callout-header { background: #f0f9ff; color: #0c4a6e; }
+
+/* PROSE */
+.prose p {
+  font-size: clamp(15px, 3.5vw, 17px);
+  line-height: 1.9;
+  color: #2a2a2a;
+  margin-bottom: 1.3rem;
+}
+.prose p:last-child { margin-bottom: 0; }
+
+.prose em {
+  font-style: italic;
+  color: #444;
+}
+
+/* SECTION DIVIDER */
+.scene-break {
+  text-align: center;
+  color: #ccc;
+  letter-spacing: .4em;
+  font-size: 13px;
+  margin: 32px 0;
+  user-select: none;
+}
+
+/* CLOSING */
+.closing {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.closing-quote {
+  font-style: italic;
+  font-size: clamp(14px, 3.5vw, 16px);
+  line-height: 1.85;
+  color: #444;
+  max-width: 520px;
+  margin: 0 auto 16px;
+}
+.tamat {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: #bbb;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+/* RINGKASAN */
+.ringkasan {
+  background: var(--accent);
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 40px;
+}
+.ringkasan-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 16px;
+}
+.ringkasan-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid #2a2a2a;
+}
+.ringkasan-item:last-child { border-bottom: none; padding-bottom: 0; }
+.ring-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.ring-nama {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: #fff;
+  min-width: 120px;
+}
+.ring-scene {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: #777;
+  line-height: 1.5;
+}
+
+/* FOOTER */
+.footer {
+  background: var(--accent);
+  padding: 20px;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: #555;
+  margin-top: 0;
+}
+.footer a { color: #777; text-decoration: none; }
+
+/* SCROLL TO TOP */
+.scroll-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .3s;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scroll-top.visible { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-label">Duta Pelajar Sadar Hukum</div>
+    <div class="topbar-title">Cerpen Integritas</div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Cerpen Pengantar · 9 Nilai Integritas</div>
+  <div class="hero-title">Satu Desa,<br>Sembilan Ujian</div>
+  <div class="hero-sub">Sebuah cerita tentang pilihan-pilihan kecil yang membentuk karakter besar.</div>
+  <div class="nilai-bubbles">
+    <span class="bubble">🗣️ Jujur</span>
+    <span class="bubble">🤝 Peduli</span>
+    <span class="bubble">🧭 Mandiri</span>
+    <span class="bubble">⏰ Disiplin</span>
+    <span class="bubble">⚖️ Tanggung Jawab</span>
+    <span class="bubble">💪 Kerja Keras</span>
+    <span class="bubble">🌿 Sederhana</span>
+    <span class="bubble">🦁 Berani</span>
+    <span class="bubble">🏛️ Adil</span>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <div class="reading-note">
+    Setiap kali kamu melihat kotak berwarna, itu tandanya cerita baru saja menggambarkan salah satu dari 9 nilai integritas. Perhatikan baik-baik — nilai-nilai ini yang kamu butuhkan di game berikutnya.
+  </div>
+
+  <div class="prose">
+    <p>Desa Karang Asri selalu tampak tenang di pagi hari. Kabut tipis masih menggantung di atas sawah ketika Raka, siswa kelas dua belas, mengayuh sepedanya menuju sekolah. Di tangannya ada amplop cokelat — berisi hasil ulangan matematika yang sudah ia pelajari selama tiga hari penuh.</p>
+
+    <p>"Ra, kamu dapat berapa?" tanya Dinda, sahabatnya, sambil berlari kecil menyejajarkan langkah. Raka menggeleng pelan. "Belum kubuka." Dinda tertawa kecil. "Aku dapat tujuh puluh. Tapi..." ia menurunkan suara, "Andi minta aku kasih jawaban waktu ulangan tadi. Katanya cuma satu soal." Raka langsung serius. "Kamu kasih?" Dinda menggeleng. "Nolak. Rasanya aneh aja kalau iya."</p>
+  </div>
+
+  <div class="nilai-callout n1">
+    <div class="callout-header">
+      <span class="callout-num-tag">Nilai 1</span>
+      <span class="callout-nama-big">🗣️ Jujur</span>
+    </div>
+    <div class="callout-body">Dinda menolak memberikan jawaban — bukan karena takut ketahuan, tapi karena hati nuraninya tahu itu salah. Jujur bukan hanya soal tidak berbohong, tapi juga tidak ikut dalam kecurangan orang lain.</div>
+  </div>
+
+  <div class="prose">
+    <p>Di kantin, mereka melihat Bu Lastri, penjaga kantin yang sudah tua, kesulitan mengangkat galon air sendirian. Semua orang berlalu begitu saja. Raka dan Dinda langsung bangkit tanpa berpikir panjang. "Bu, kami bantu." Bu Lastri tersenyum hangat — bukan karena galon itu berat sekali, tapi karena ada yang masih mau repot untuk orang lain.</p>
+  </div>
+
+  <div class="nilai-callout n2">
+    <div class="callout-header">
+      <span class="callout-num-tag">Nilai 2</span>
+      <span class="callout-nama-big">🤝 Peduli</span>
+    </div>
+    <div class="callout-body">Semua orang melihat Bu Lastri kesulitan, tapi hanya Raka dan Dinda yang bertindak. Peduli bukan sekadar merasa kasihan — peduli berarti bergerak.</div>
+  </div>
+
+  <div class="scene-break">· · ·</div>
+
+  <div class="prose">
+    <p>Siang itu, pemilihan ketua kelas baru berlangsung. Pak Guru Hendra meminta siswa memilih bukan karena pertemanan, tapi karena kelayakan. Gilang yang populer hanya mendapat sedikit suara. Farida yang pendiam dan rajin — yang selalu hadir, selalu membantu — justru menang. Beberapa siswa berbisik kecewa. Tapi Pak Hendra hanya tersenyum. "Itulah artinya adil."</p>
+  </div>
+
+  <div class="nilai-callout n9">
+    <div class="callout-header">
+      <span class="callout-num-tag">Nilai 9</span>
+      <span class="callout-nama-big">🏛️ Adil</span>
+    </div>
+    <div class="callout-body">Memilih berdasarkan kelayakan, bukan kedekatan. Adil bukan berarti semua dapat sama rata — tapi semua diperlakukan sesuai haknya.</div>
+  </div>
+
+  <div class="prose">
+    <p>Sepulang sekolah, Raka mampir ke balai desa. Ada pengumuman soal beasiswa untuk warga kurang mampu. Tapi di sudut ruangan, ia mendengar percakapan mencurigakan antara seorang staf desa dan saudaranya. "Nama kamu bisa dimasukkan, nanti kita atur." Raka terdiam. Perutnya mual. Malamnya, dengan tangan sedikit gemetar, ia menulis surat pengaduan anonim ke kotak saran kelurahan dan menyerahkannya keesokan paginya.</p>
+  </div>
+
+  <div class="nilai-callout n8">
+    <div class="callout-header">
+      <span class="callout-num-tag">Nilai 8</span>
+      <span class="callout-nama-big">🦁 Berani</span>
+    </div>
+    <div class="callout-body">Raka tidak punya kekuasaan apa-apa. Tapi ia melakukan yang bisa ia lakukan. Berani bukan berarti tidak takut — berani berarti bertindak meski takut.</div>
+  </div>
+
+  <div class="scene-break">· · ·</div>
+
+  <div class="prose">
+    <p>Keesokan paginya, Pak Camat berkunjung ke sekolah. Yang menarik perhatian Raka bukan pidatonya — tapi mobilnya yang biasa, bajunya yang bersih namun sederhana, dan kotak makannya yang jelas dibawa dari rumah. "Pak Camat itu gajinya pasti gede," bisik seseorang. "Tapi kayaknya hidupnya biasa aja." Raka memperhatikan. Ada sesuatu yang lebih berwibawa dari kemewahan dalam kesederhanaan itu.</p>
+  </div>
+
+  <div class="nilai-callout n7">
+    <div class="callout-header">
+      <span class="callout-num-tag">Nilai 7</span>
+      <span class="callout-nama-big">🌿 Sederhana</span>
+    </div>
+    <div class="callout-body">Jabatan bukan alasan untuk hidup berlebihan. Pak Camat memilih hidup sesuai kepatutan — bukan karena tidak mampu, tapi karena memahami amanah yang ia emban.</div>
+  </div>
+
+  <div class="prose">
+    <p>Di kelas sore, ekskul debat membahas tema: "Apakah korupsi kecil bisa dimaafkan?" Seorang siswa berargumen, "Yang penting sudah minta maaf dan tidak mengulangi." Raka mengangkat tangan. "Korupsi kecil yang tidak ditanggung konsekuensinya itu yang berbahaya — karena ia jadi latihan untuk yang lebih besar. Kalau kita tidak mau bertanggung jawab atas yang kecil, bagaimana kita bisa dipercaya untuk yang besar?" Ruangan hening sebentar.</p>
+  </div>
+
+  <div class="nilai-callout n5">
+    <div class="callout-header">
+      <span class="callout-num-tag">Nilai 5</span>
+      <span class="callout-nama-big">⚖️ Tanggung Jawab</span>
+    </div>
+    <div class="callout-body">Kesalahan sekecil apapun perlu diakui dan ditanggung. Orang yang berintegritas tidak lari dari konsekuensi — mereka menghadapinya.</div>
+  </div>
+
+  <div class="scene-break">· · ·</div>
+
+  <div class="prose">
+    <p>Malam harinya, adik Raka mengeluh soal tugas yang panjang. "Kak, ini lama banget kalau dikerjain sendiri. Bisa copas dari internet kan?" Raka menggeleng. "Justru yang susah itu yang bikin kamu tumbuh. Kalau selalu cari jalan pintas, kamu tidak pernah benar-benar belajar." Adiknya cemberut — tapi mulai mengetik sendiri, pelan-pelan.</p>
+  </div>
+
+  <div class="nilai-callout n6">
+    <div class="callout-header">
+      <span class="callout-num-tag">Nilai 6</span>
+      <span class="callout-nama-big">💪 Kerja Keras</span>
+    </div>
+    <div class="callout-body">Jalan pintas mungkin lebih cepat, tapi hasilnya tidak pernah benar-benar milikmu. Kerja keras bukan tentang susah-susahan — tapi tentang menghargai proses yang benar.</div>
+  </div>
+
+  <div class="prose">
+    <p>Musyawarah desa diadakan esok harinya untuk membahas pembangunan mushola. Pak RT mengusulkan agar pengerjaan diserahkan ke keponakannya. "Lebih murah, keluarga sendiri," katanya. Pak Lurah menggeleng tegas. "Semua kontraktor punya kesempatan yang sama untuk mengajukan penawaran. Kita tidak boleh pilih kasih." Pak RT sedikit tersinggung. Tapi Pak Lurah tidak bergeming — karena keputusannya bukan untuk menyenangkan satu orang, tapi untuk kepentingan semua.</p>
+  </div>
+
+  <div class="nilai-callout n3">
+    <div class="callout-header">
+      <span class="callout-num-tag">Nilai 3</span>
+      <span class="callout-nama-big">🧭 Mandiri</span>
+    </div>
+    <div class="callout-body">Pak Lurah tidak goyah meski ada tekanan dari Pak RT. Mandiri berarti mengambil keputusan berdasarkan prinsip — bukan karena tekanan sosial atau hubungan keluarga.</div>
+  </div>
+
+  <div class="scene-break">· · ·</div>
+
+  <div class="prose">
+    <p>Hari terakhir minggu itu, sebuah insiden kecil terjadi. Panitia kegiatan sekolah terlambat mengumpulkan laporan keuangan karena lupa prosedurnya. Kepala sekolah tidak marah — tapi mengingatkan dengan serius: "Prosedur itu bukan formalitas. Ia ada untuk melindungi kalian dan sekolah. Kalau diabaikan sekali, ia akan terus diabaikan. Dan di situlah korupsi mulai tumbuh — dari kelonggaran kecil yang kita biarkan."</p>
+  </div>
+
+  <div class="nilai-callout n4">
+    <div class="callout-header">
+      <span class="callout-num-tag">Nilai 4</span>
+      <span class="callout-nama-big">⏰ Disiplin</span>
+    </div>
+    <div class="callout-body">Disiplin bukan soal kaku atau keras — tapi soal konsistensi. Korupsi sering bermula bukan dari niat jahat, tapi dari kebiasaan mengabaikan aturan kecil.</div>
+  </div>
+
+  <div class="scene-break">· · ·</div>
+
+  <div class="prose">
+    <p>Upacara bendera hari Senin. Raka berdiri di barisan, menatap Merah Putih yang berkibar pelan. Ia tidak memberikan pidato hari itu. Tapi dalam hatinya ia sudah menyimpulkan satu hal yang ia pelajari sepanjang minggu ini:</p>
+  </div>
+
+  <div class="closing">
+    <div class="closing-quote">
+      "Integritas bukan tentang tidak pernah salah. Integritas adalah tentang apa yang kamu pilih ketika tidak ada yang mengawasi. Dan pilihan-pilihan kecil itu — menolak curang, membantu yang lemah, berani melapor, hidup sederhana, taat aturan — itulah yang perlahan membentuk siapa kamu sebenarnya."
+    </div>
+    <div class="tamat">— Selesai —</div>
+  </div>
+
+  <div class="ringkasan">
+    <div class="ringkasan-title">9 Nilai yang muncul dalam cerita ini</div>
+    <div class="ringkasan-item"><div class="ring-dot" style="background:#ef4444"></div><div><div class="ring-nama">🗣️ Jujur</div><div class="ring-scene">Dinda menolak memberikan jawaban saat ulangan</div></div></div>
+    <div class="ringkasan-item"><div class="ring-dot" style="background:#f59e0b"></div><div><div class="ring-nama">🤝 Peduli</div><div class="ring-scene">Raka & Dinda membantu Bu Lastri angkat galon</div></div></div>
+    <div class="ringkasan-item"><div class="ring-dot" style="background:#22c55e"></div><div><div class="ring-nama">🧭 Mandiri</div><div class="ring-scene">Pak Lurah tidak pilih kasih meski ditekan</div></div></div>
+    <div class="ringkasan-item"><div class="ring-dot" style="background:#3b82f6"></div><div><div class="ring-nama">⏰ Disiplin</div><div class="ring-scene">Kepala sekolah tegaskan pentingnya prosedur</div></div></div>
+    <div class="ringkasan-item"><div class="ring-dot" style="background:#8b5cf6"></div><div><div class="ring-nama">⚖️ Tanggung Jawab</div><div class="ring-scene">Raka bicara soal konsekuensi di ekskul debat</div></div></div>
+    <div class="ringkasan-item"><div class="ring-dot" style="background:#ec4899"></div><div><div class="ring-nama">💪 Kerja Keras</div><div class="ring-scene">Raka larang adiknya copas tugas</div></div></div>
+    <div class="ringkasan-item"><div class="ring-dot" style="background:#10b981"></div><div><div class="ring-nama">🌿 Sederhana</div><div class="ring-scene">Pak Camat hidup biasa meski jabatan tinggi</div></div></div>
+    <div class="ringkasan-item"><div class="ring-dot" style="background:#f97316"></div><div><div class="ring-nama">🦁 Berani</div><div class="ring-scene">Raka lapor kecurangan beasiswa secara anonim</div></div></div>
+    <div class="ringkasan-item"><div class="ring-dot" style="background:#0ea5e9"></div><div><div class="ring-nama">🏛️ Adil</div><div class="ring-scene">Pemilihan ketua kelas berdasarkan kelayakan</div></div></div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Produk Duta Pelajar Sadar Hukum · Tema: Anti-Korupsi &amp; 9 Nilai Integritas KPK
+</div>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scrolled = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+    document.getElementById('progressBar').style.width = scrolled + '%';
+    
+    const btn = document.getElementById('scrollTop');
+    btn.classList.toggle('visible', doc.scrollTop > 300);
+  });
+</script>
+</body>
+</html>
